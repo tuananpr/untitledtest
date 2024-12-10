@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -9,9 +10,15 @@ public class SeleniumTest {
 
     @BeforeClass
     public void setUp() {
-        // Thay đổi đường dẫn đến chromedriver
         System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-        driver = new ChromeDriver();
+
+
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
+
+        driver = new ChromeDriver(options);
     }
 
     @Test
